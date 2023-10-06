@@ -1,2 +1,2 @@
 # ShootTheTarget
-Assignment for ARVR
+Assignment for AMVR
