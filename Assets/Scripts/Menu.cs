@@ -5,17 +5,17 @@ using UnityEngine;
 public class Menu : MonoBehaviour
 {
     [SerializeField]
-    GameObject GameManager;
+    private GameObject GameManager;
     [SerializeField]
-    GameObject Restart;
+    private GameObject Restart;
     [SerializeField]
-    GameObject StartBT;
+    private GameObject StartBT;
     [SerializeField]
-    GameObject Back;
-    int wait_periode = 0;
-    string collisionString;
+    private GameObject Back;
+    private int wait_periode = 0;
+    private string collisionString;
     [SerializeField]
-    GameObject pointer;
+    private GameObject pointer;
     // Start is called before the first frame update
     void Start()
     {

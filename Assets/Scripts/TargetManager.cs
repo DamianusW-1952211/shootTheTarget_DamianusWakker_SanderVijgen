@@ -5,35 +5,35 @@ using UnityEngine;
 public class TargetManager : MonoBehaviour
 {
     [SerializeField]
-    GameObject Menu;
+    private GameObject Menu;
     [SerializeField]
-    GameObject Printer;
+    private GameObject Printer;
     [SerializeField]
-    GameObject Lamp;
+    private GameObject Lamp;
     [SerializeField]
-    GameObject Vaas;
+    private GameObject Vaas;
     [SerializeField]
-    GameObject VStat;
+    private GameObject VStat;
     [SerializeField]
-    GameObject LStat;
+    private GameObject LStat;
     [SerializeField]
-    GameObject PStat;
+    private GameObject PStat;
     [SerializeField]
-    GameObject targetPrefabBasic;
+    private GameObject targetPrefabBasic;
 
     [SerializeField]
-    GameObject player;
+    private GameObject player;
     [SerializeField]
-    GameObject targetPrefabBonus;
+    private GameObject targetPrefabBonus;
     [SerializeField]
-    GameObject targetPrefabMalus;
-    float counter = 0.0f;
-    int targetPrefabBasicCounter = 0;
-    int targetPrefabBonusCounter = 0;
-    int targetPrefabMalusCounter = 0;
-    bool menuActive = false;
-    bool started = false;
-    List<GameObject> Targets = new List<GameObject>();
+    private GameObject targetPrefabMalus;
+    private float counter = 0.0f;
+    private int targetPrefabBasicCounter = 0;
+    private int targetPrefabBonusCounter = 0;
+    private int targetPrefabMalusCounter = 0;
+    private bool menuActive = false;
+    private bool started = false;
+    private List<GameObject> Targets = new List<GameObject>();
 
 
     // Start is called before the first frame update
@@ -83,10 +83,16 @@ public class TargetManager : MonoBehaviour
     }
     public void Restart()
     {
-        counter = 0;
-        player.GetComponent<PlayerManager>().Reset();
-        DeleteTargets();
-
+        if(Lamp.activeSelf == true && Printer.activeSelf == true && Vaas.activeSelf == true)
+        {
+            ResetToBeginScene();
+        }
+        else
+        {
+            counter = 0;
+            player.GetComponent<PlayerManager>().Reset();
+            DeleteTargets();
+        }
     }
     public void Starter()
     {
@@ -101,14 +107,15 @@ public class TargetManager : MonoBehaviour
     public void Back()
     {
         DeleteTargets();
-        Menu.SetActive(false);
-        started = false;
-        Printer.SetActive(true);
-        Lamp.SetActive(true);
-        Vaas.SetActive(true);
-        VStat.SetActive(true);
-        LStat.SetActive(true);
-        PStat.SetActive(true);
+        ResetToBeginScene();
+        // Menu.SetActive(false);
+        // started = false;
+        // Printer.SetActive(true);
+        // Lamp.SetActive(true);
+        // Vaas.SetActive(true);
+        // VStat.SetActive(true);
+        // LStat.SetActive(true);
+        // PStat.SetActive(true);
     }
     void DeleteTargets()
     {
@@ -117,5 +124,11 @@ public class TargetManager : MonoBehaviour
 
             Destroy(Targets[i]);
         }
+    }
+
+    public void ResetToBeginScene()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex);
     }
 }
