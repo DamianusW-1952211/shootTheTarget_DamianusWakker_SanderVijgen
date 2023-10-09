@@ -6,18 +6,20 @@ public class Schooter : MonoBehaviour
 {
     
     [SerializeField]
-    GameObject bulletPrefab;
+    private GameObject bulletPrefab;
     [SerializeField]
-    Transform bulletSpawnPoint;
+    private Transform bulletSpawnPoint;
     [SerializeField]
-    float bulletSpeed = 10f;
+    private float bulletSpeed = 10f;
     [SerializeField]
-    GameObject smoke;
+    private GameObject smoke;
+    [SerializeField]
+    private AudioSource GunShot;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        GunShot = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -27,6 +29,7 @@ public class Schooter : MonoBehaviour
         //if(OVRInput.Get(OVRInput.RawButton.RIndexTrigger)) // als je de trigger ingedrukt houd
         {
             shoot();
+            GunShot.Play();
             GameObject smokeEffect = Instantiate<GameObject>(smoke, transform.position, transform.rotation);
         }
 
