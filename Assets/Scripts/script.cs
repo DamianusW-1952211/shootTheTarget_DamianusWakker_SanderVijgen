@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class script : MonoBehaviour
 {
+    [SerializeField]
+    private AudioSource targetHitSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +21,9 @@ public class script : MonoBehaviour
     {
 
         if (collision.gameObject.layer == LayerMask.NameToLayer("Bullets"))
-        {}
+        {
+            targetHitSound.Play();
+        }
     }
     
 }
