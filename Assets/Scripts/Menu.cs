@@ -27,6 +27,15 @@ public class Menu : MonoBehaviour
     {
         GameManager.GetComponent<TargetManager>().SetMenuActive(true);
         wait_periode++;
+        /*
+        if (GameManager.GetComponent<TargetManager>().CountdownComplete())
+        {
+            GameManager.GetComponent<TargetManager>().Back();
+            GameManager.GetComponent<TargetManager>().SetMenuActive(false);
+            Debug.Log("Back");
+            pointer.SetActive(false);
+        }
+        */
         if (wait_periode > 5)
         { //so that you dont accedently prees the buttons when trying to activate the menu the menu is onresponsive for a couple of tics
             collisionString = pointer.GetComponent<PointerScript>().WatsTheHit(); //gets the name of the button that is hit with the laser beam

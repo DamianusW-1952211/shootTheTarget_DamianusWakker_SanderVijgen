@@ -35,12 +35,13 @@ public class TargetManager : MonoBehaviour
     private bool menuActive = false;
     private bool started = false;
     private List<GameObject> Targets = new List<GameObject>();
+    private CountdownTimer countdownTimer;
 
 
     // Start is called before the first frame update
     void Start()
     {
-
+        countdownTimer = GetComponent<CountdownTimer>();
     }
 
     // Update is called once per frame
@@ -95,9 +96,11 @@ public class TargetManager : MonoBehaviour
             DeleteTargets();
         }
     }
+
     public void Starter()
     {
         started = true;
+        countdownTimer.StartTimer();
         Printer.SetActive(false);
         Lamp.SetActive(false);
         Vaas.SetActive(false);
@@ -105,19 +108,13 @@ public class TargetManager : MonoBehaviour
         LStat.SetActive(false);
         PStat.SetActive(false);
     }
+
     public void Back()
     {
         DeleteTargets();
-        ResetToBeginScene();
-        // Menu.SetActive(false);
-        // started = false;
-        // Printer.SetActive(true);
-        // Lamp.SetActive(true);
-        // Vaas.SetActive(true);
-        // VStat.SetActive(true);
-        // LStat.SetActive(true);
-        // PStat.SetActive(true);
+        ResetToBeginScene(); 
     }
+
     void DeleteTargets()
     {
         for (int i = 0; i < Targets.Count; i++)
@@ -131,5 +128,10 @@ public class TargetManager : MonoBehaviour
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex);
+    }
+
+    public bool CountdownComplete()
+    {
+        return countdownTimer.IsCountdownComplete;
     }
 }
