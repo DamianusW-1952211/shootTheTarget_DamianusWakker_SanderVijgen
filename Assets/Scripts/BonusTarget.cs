@@ -5,7 +5,8 @@ using UnityEngine;
 public class BonusTarget : MonoBehaviour
 
 {
-
+    [SerializeField]
+    private AudioSource targetHitSound;
     GameObject Player;
     float count_after_start = 0.0f;
     int count_to_blow = 4;
@@ -29,6 +30,7 @@ public class BonusTarget : MonoBehaviour
 
         if (collision.gameObject.layer == LayerMask.NameToLayer("Bullets"))
         {
+            targetHitSound.Play();
             string collisionString = collision.gameObject.name;
             Debug.Log(collisionString);
             collision.gameObject.SetActive(false);
