@@ -34,26 +34,25 @@ public class BonusTarget : MonoBehaviour
             string collisionString = collision.gameObject.name;
             Debug.Log(collisionString);
             collision.gameObject.SetActive(false);
-            int positieX = (int)collision.gameObject.transform.position.x;
-            int positieY = (int)collision.gameObject.transform.position.y;
-
-            int DPTime;
-            float pitago = Mathf.Sqrt((positieX - (int)transform.position.x) ^ 2 + (positieY - (int)transform.position.y) ^ 2);
-            if (pitago < 0.06)
-            {
-                DPTime = 100;
-            }
-            else if (pitago < 0.12)
-            {
-                DPTime = 50;
-            }
-            else if (pitago < 0.18)
-            {
-                DPTime = 30;
-            }
-            else if (pitago < 0.24)
+            float positieX = collision.gameObject.transform.position.x;
+            float positieY = collision.gameObject.transform.position.y;
+            float DPTime;
+            float pitago = Mathf.Sqrt((positieX - transform.position.x) * (positieX - transform.position.x)+ (positieY - transform.position.y) * (positieY - transform.position.y));
+            if (pitago < 0.8)
             {
                 DPTime = 15;
+            }
+            else if (pitago < 0.30)
+            {
+                DPTime = 10;
+            }
+            else if (pitago < 0.36)
+            {
+                DPTime = 7;
+            }
+            else if (pitago < 0.38)
+            {
+                DPTime = 5;
             }
             else
             {

@@ -34,23 +34,23 @@ public class NormalTarger : MonoBehaviour
             string collisionString = collision.gameObject.name;
             Debug.Log(collisionString);
             collision.gameObject.SetActive(false);
-            int positieX = (int)collision.gameObject.transform.position.x;
-            int positieY = (int)collision.gameObject.transform.position.y;
+            float positieX = collision.gameObject.transform.position.x;
+            float positieY = collision.gameObject.transform.position.y;
             int score;
-            float pitago = Mathf.Sqrt((positieX - (int)transform.position.x) ^ 2 + (positieY - (int)transform.position.y) ^ 2);
-            if (pitago < 0.06)
+            float pitago = Mathf.Sqrt((positieX - transform.position.x) * (positieX - transform.position.x)+ (positieY - transform.position.y) * (positieY - transform.position.y));
+            if (pitago < 0.08)
             {
                 score = 10;
             }
-            else if (pitago < 0.12)
+            else if (pitago < 0.3)
             {
                 score = 5;
             }
-            else if (pitago < 0.18)
+            else if (pitago < 0.36)
             {
                 score = 2;
             }
-            else if (pitago < 0.24)
+            else if (pitago < 0.38)
             {
                 score = 1;
             }

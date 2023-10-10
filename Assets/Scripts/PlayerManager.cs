@@ -21,8 +21,8 @@ public class PlayerManager : MonoBehaviour
     int score = 0;
     int highscore = 0;
     bool dubblePoints = false;
-    int dubblePointsCountDown = 0;
-    int dubblePointsTime = 0;
+    float dubblePointsCountDown = 0;
+    float dubblePointsTime = 0;
     
     // Start is called before the first frame update
     void Start()
@@ -42,11 +42,11 @@ public class PlayerManager : MonoBehaviour
             Menu.SetActive(true);
             Pointer.SetActive(true);
         }
-        if (dubblePoints == true && dubblePointsCountDown == dubblePointsTime){
+        if (dubblePoints == true && dubblePointsCountDown >= dubblePointsTime){
             dubblePoints = false;
         }
-        else{
-            dubblePointsCountDown++;
+        else if (dubblePoints == true){
+            dubblePointsCountDown+=Time.deltaTime;
         }
     }
     
@@ -82,7 +82,7 @@ public class PlayerManager : MonoBehaviour
         score = 0;
         aantalLevens = 3;
     }
-    public void DubblePoints(int tijd){
+    public void DubblePoints(float tijd){
         dubblePoints = true;
         dubblePointsCountDown = 0;
         dubblePointsTime = tijd;
@@ -93,5 +93,8 @@ public class PlayerManager : MonoBehaviour
         Menu.SetActive(true);
         Pointer.SetActive(true);
         LevensTXT.GetComponent<TMPro.TextMeshProUGUI>().text = "Levens: " + aantalLevens;
+    }
+    public void SetAantalLevens(int levens){
+        aantalLevens = levens;
     }
 }

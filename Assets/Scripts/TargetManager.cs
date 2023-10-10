@@ -107,6 +107,7 @@ public class TargetManager : MonoBehaviour
         VStat.SetActive(false);
         LStat.SetActive(false);
         PStat.SetActive(false);
+        player.GetComponent<PlayerManager>().SetAantalLevens(5);
     }
 
     public void Back()
