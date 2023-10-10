@@ -11,6 +11,12 @@ public class PlayerManager : MonoBehaviour
     GameObject Menu;
     [SerializeField]
     GameObject Pointer;
+    [SerializeField]
+    GameObject ScoreTXT;
+    [SerializeField]
+    GameObject HighScoreTXT;
+    [SerializeField]
+    GameObject LevensTXT;
     bool MenuBool = false;
     int score = 0;
     int highscore = 0;
@@ -23,6 +29,9 @@ public class PlayerManager : MonoBehaviour
     {
         Menu.SetActive(false);
         Pointer.SetActive(false);
+        ScoreTXT.GetComponent<TMPro.TextMeshProUGUI>().text = "Score: " + score;
+        HighScoreTXT.GetComponent<TMPro.TextMeshProUGUI>().text = "Highscore: " + highscore;
+        LevensTXT.GetComponent<TMPro.TextMeshProUGUI>().text = "Levens: " + aantalLevens;
     }
 
     // Update is called once per frame
@@ -48,8 +57,9 @@ public class PlayerManager : MonoBehaviour
         }
         else{
             Debug.Log("Game Over");
-            Reset();
+            GameOver();
         }
+        LevensTXT.GetComponent<TMPro.TextMeshProUGUI>().text = "Levens: " + aantalLevens;
     }
 
     public void IsRaak(int hitScore){
@@ -61,11 +71,11 @@ public class PlayerManager : MonoBehaviour
         }
         if (score > highscore){
             highscore = score;
-            Debug.Log("New Highscore: " + highscore);
+            HighScoreTXT.GetComponent<TMPro.TextMeshProUGUI>().text = "Highscore: " + highscore;
         }
         else{
-            Debug.Log("Score: " + score);
         }
+        ScoreTXT.GetComponent<TMPro.TextMeshProUGUI>().text = "Score: " + score;
     }
 
     public void Reset() {
@@ -80,6 +90,8 @@ public class PlayerManager : MonoBehaviour
     public void GameOver(){
         aantalLevens = 0;
         Debug.Log("Game Over");
-        Reset();
+        Menu.SetActive(true);
+        Pointer.SetActive(true);
+        LevensTXT.GetComponent<TMPro.TextMeshProUGUI>().text = "Levens: " + aantalLevens;
     }
 }

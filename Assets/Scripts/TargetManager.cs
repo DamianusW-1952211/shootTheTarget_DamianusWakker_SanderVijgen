@@ -100,7 +100,7 @@ public class TargetManager : MonoBehaviour
     public void Starter()
     {
         started = true;
-        countdownTimer.StartTimer();
+        //countdownTimer.StartTimer();
         Printer.SetActive(false);
         Lamp.SetActive(false);
         Vaas.SetActive(false);
