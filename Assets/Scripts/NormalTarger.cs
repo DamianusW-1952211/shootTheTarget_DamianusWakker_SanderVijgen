@@ -9,7 +9,7 @@ public class NormalTarger : MonoBehaviour
     private AudioSource targetHitSound;
     GameObject Player;
     float count_after_start = 0.0f;
-    int count_to_blow = 4;
+    int count_to_blow = 6;
 
     // Start is called before the first frame update
     void Start()

@@ -9,7 +9,8 @@ public class BonusTarget : MonoBehaviour
     private AudioSource targetHitSound;
     GameObject Player;
     float count_after_start = 0.0f;
-    int count_to_blow = 4;
+    int count_to_blow = 6;
+    bool geschoten = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,8 +28,7 @@ public class BonusTarget : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
-
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Bullets"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Bullets") && geschoten == false)
         {
             targetHitSound.Play();
             string collisionString = collision.gameObject.name;
@@ -58,12 +58,17 @@ public class BonusTarget : MonoBehaviour
             {
                 DPTime = 0;
             }
+
             Player.GetComponent<PlayerManager>().DubblePoints(DPTime);
+            geschoten = true;
+            count_after_start = 0;
             Object.Destroy(this.gameObject);
         }
+
     }
     void BlowUp()
     {
+        
         Player.GetComponent<PlayerManager>().Ontploft();
         Debug.Log("BlowUp");
         Object.Destroy(this.gameObject);

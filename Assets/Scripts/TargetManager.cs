@@ -49,7 +49,7 @@ public class TargetManager : MonoBehaviour
     {
         if (counter >= 2 && menuActive == false && started == true)
         {
-            int xcount = Random.Range(1, 10);
+            int xcount = Random.Range(0, 10);
             int xposition = Random.Range(-4, 4);
             int zposition = Random.Range(0, 7);
             if (xcount < 2)
@@ -91,6 +91,7 @@ public class TargetManager : MonoBehaviour
         }
         else
         {
+            player.GetComponent<PlayerManager>().SetAantalLevens(5);
             counter = 0;
             player.GetComponent<PlayerManager>().Reset();
             DeleteTargets();

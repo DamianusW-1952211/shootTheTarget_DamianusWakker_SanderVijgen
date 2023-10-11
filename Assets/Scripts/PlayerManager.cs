@@ -5,8 +5,7 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField]
-    int aantalLevens;
+    int aantalLevens = 5;
     [SerializeField]
     GameObject Menu;
     [SerializeField]
@@ -52,7 +51,7 @@ public class PlayerManager : MonoBehaviour
     
 
     public void Ontploft(){
-        if(aantalLevens>0)
+        if(aantalLevens>1)
         {aantalLevens--;
         }
         else{
@@ -80,7 +79,6 @@ public class PlayerManager : MonoBehaviour
 
     public void Reset() {
         score = 0;
-        aantalLevens = 3;
     }
     public void DubblePoints(float tijd){
         dubblePoints = true;
@@ -97,4 +95,5 @@ public class PlayerManager : MonoBehaviour
     public void SetAantalLevens(int levens){
         aantalLevens = levens;
     }
+
 }
